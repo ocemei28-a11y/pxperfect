@@ -6,9 +6,50 @@
 
 
 html, body {
-  height: 100%;
-  width: 100%;
+  height: 844px;
+  width: 390px;
+  overflow-x: hidden;
+   -webkit-overflow-scrolling: touch;
 }
+
+#home.page,
+#qr.page,
+#pin.page,
+#vehicles.page,
+#licence-landing.page,
+#payment.page,
+#profile.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 844px;
+  overflow: hidden;
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Completely hides the scroll indicator on iOS */
+  width: 0;
+  height: 0;
+}
+
+/* Add this global scrolling container standard */
+.page-scroll-content {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* Keeps iOS scroll smooth */
+  padding-bottom: calc(100px + env(safe-area-inset-bottom)); /* Pads above bottom nav */
+  
+  /* Applies your fade-out mask smoothly to all pages */
+  -webkit-mask: linear-gradient(to bottom, black 0px, black calc(100% - 80px), transparent 100%);
+  mask: linear-gradient(to bottom, black 0px, black calc(100% - 80px), transparent 100%);
+}
+
+/* Hide scrollbars across the entire app for this utility */
+.page-scroll-content::-webkit-scrollbar {
+  display: none !important;
+}
+
+
 
 .secret-text-trigger {
             color: inherit;       
@@ -89,6 +130,7 @@ body {
   margin: 0 auto;
   background: #fff;
   max-height: 844px;
+  overflow-x: hidden;
 }
 
 
@@ -171,31 +213,52 @@ body {
 
 .segmented {
   display: flex;
-  width: fit-content;
-  margin: 16px auto 0;
+  align-items: center; /* Vertically centers the buttons and pill inside the 36px outline */
+  
+  /* 🛠️ OUTLINE CONTAINER DIMENSIONS */
+  width: 341px; 
+  height: 36px; 
+  
+  /* 🛠️ 36px GAP FROM CONTENT ABOVE */
+  margin: 36px auto 0 20px; /* 36px top gap, auto right, 0 bottom, 20px left margin */
+  
   background: #ffffff;
   border-radius: 999px;
   border: 1px solid #e5e7eb;
   position: relative;
+  box-sizing: border-box;
 }
 
 .segmented .slider-pill {
   position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 3px;
+  
+  /* 🛠️ SLIDER PILL DIMENSIONS */
+  width: 113px !important; 
+  height: 33px !important;
+  
+  /* Vertically centers the 33px pill inside the 36px container */
+  top: 50%;
+  transform: translateY(-50%);
+  left: 4px; /* Adjust this value if you need to align the pill starting point */
+  
   background: #1f3b63;
   border-radius: 999px;
   transition: left 0.6s ease, width 0.6s ease;
   z-index: 0;
-  width: 0;
 }
 
 .segmented button {
   border: none;
   background: transparent;
-  padding: 5px 42px;
-  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* 🛠️ INDIVIDUAL TOGGLE BUTTON DIMENSIONS */
+  width: 113px; 
+  height: 36px; 
+  
+  border-radius: 999px; /* Rounded pill style to match the container outline */
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -203,12 +266,15 @@ body {
   transition: color 0.2s ease;
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
+  padding: 0;
 }
 
 .segmented button.active {
   background: transparent;
   color: white;
 }
+
 
 .licence-link {
   text-decoration: none;
@@ -292,6 +358,7 @@ button.active {
 .details h2 {
   margin-bottom: 20px;
   margin-top: 58px;
+  font-size: 21.5px;
   color: #3c4a60;
 }
 
@@ -578,7 +645,7 @@ h3 {
  #tab-age .age-label {
   font-size: 12px;
   color: #8b8b8b;
-  padding: 1px 16px 10px;
+  padding: 1px 6px 10px;
   padding-top: -50px;
 }
 
@@ -591,7 +658,7 @@ h3 {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 0 16px 18px;
+  padding: 0 6px 18px;
 }
 
 #tab-age .age-check {
@@ -638,12 +705,18 @@ h3 {
   background: #eef3f6;
   max-height: 844px;
   position: relative; /* important for absolute positioning */
+  overflow-x: hidden;
 }
 
 /* CONTENT */
 #homepage .content {
-  padding: 20px 16px 120px;
+  flex: 1;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  padding: 20px 16px 140px; /* Keeps your welcome message and cards perfectly spaced above the bottom nav bar */
 }
+
 
 /* HEADER */
 #homepage .header {
@@ -673,7 +746,7 @@ h3 {
     margin-left: 24px;
     margin-bottom: 20px;
     margin-top: 0;
-    color: #243544;
+    color: #253544;
 }
 
 /* BUTTON CARDS */
@@ -1114,6 +1187,8 @@ h3 {
 
 /* LICENCE LANDING */
 
+/* LICENCE LANDING SCREENS - FIXED SCROLL COMPRESSION */
+/* LICENCE LANDING INTERFACE LAYOUTS - CORRECTED FIXED HEADER TRACKING */
 #licence-landing .app {
   max-width: 390px;
   width: 100%;
@@ -1121,24 +1196,54 @@ h3 {
   margin: 0 auto;
   background: #eef3f6;
   max-height: 844px;
-  position: relative; /* important for absolute positioning */
+  position: relative; 
+  overflow: hidden;
+  
+  /* Forces the master frame to align elements vertically */
+  display: flex;
+  flex-direction: column;
 }
 
-#licence-landing .ll-content::-webkit-scrollbar {
-  display: none;
-}
-
-/* heading — 60px from top, 28px gap before hero card */
+/* THE FIXED HEADING LAYER: Anchors statically at the top just like your Profile view */
 #licence-landing .ll-heading {
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 32px;
   font-weight: 700;
-  color: #243544;
+  color: #253544;
   margin: 0;
-  padding: 60px 0 28px 24px;
+  padding: 60px 0 20px 24px;
+  background: #eef3f6; 
+  width: 100%;
+  z-index: 10; /* Keeps it strictly layered above scrolling cards */
+  flex-shrink: 0;
 }
 
-/* blue hero card — 366px wide, 204px high */
+/* THE SCROLL BOX LAYER FIX: Fills the remaining space accurately without breaking heights */
+#licence-landing .ll-content {
+  flex: 1;
+  display: block;
+  
+  /* FIXED VIEWPORT LAYER: Locks scroll box boundaries exactly between header and footer bar */
+  height: calc(844px - 140px - 100px); 
+  
+  overflow-y: scroll !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+  
+  /* Clean tracking gaps and bottom navigation clearance padding */
+  padding: 0 24px 140px 24px; 
+  box-sizing: border-box;
+  
+  /* Smooth fade-out mask layout logic */
+  -webkit-mask: linear-gradient(to bottom, black 0px, black calc(100% - 60px), transparent 100%);
+  mask: linear-gradient(to bottom, black 0px, black calc(100% - 60px), transparent 100%);
+}
+
+#licence-landing .ll-content::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Blue hero card layout details */
 #licence-landing .ll-card-hero {
   width: 342px;
   height: 204px;
@@ -1157,32 +1262,7 @@ h3 {
   box-sizing: border-box;
 }
 
-#licence-landing .ll-content {
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-  height: calc(100vh - 60px - 100px);
-  padding: 0 24px;
-  box-sizing: border-box;
-  -webkit-mask: linear-gradient(
-    to bottom,
-    black 0px,
-    black calc(100% - 40px),
-    transparent 100%
-  );
-  mask: linear-gradient(
-    to bottom,
-    black 0px,
-    black calc(100% - 40px),
-    transparent 100%
-  );
-}
-
-#licence-landing .ll-content::-webkit-scrollbar {
-  display: none;
-}
-
-/* services list card — 366px wide, 431.5px high */
-/* services list card — 366px wide, 431.5px high */
+/* Services list card layout rules */
 #licence-landing .ll-card:nth-of-type(1) {
   width: 100%;
   max-width: 366px;
@@ -1191,7 +1271,7 @@ h3 {
   justify-content: center;
 }
 
-/* all items default to 68px */
+/* All standard menu rows layout default dimensions */
 #licence-landing .ll-card:nth-of-type(1) .ll-item {
   height: 68px;
   max-height: 68px;
@@ -1199,14 +1279,14 @@ h3 {
   justify-content: center;
 }
 
-/* "Manage licence renewal" item — 2nd <a> in that card — 91.5px */
+/* Manage renewal line wrapper dimensions override layout */
 #licence-landing .ll-card:nth-of-type(1) a:nth-of-type(2) {
   height: 91.5px;
   max-height: 91.5px;
   justify-content: center;
 }
 
-/* verify card — size to content, not inherited height */
+/* Verification list card wrapper definitions */
 #licence-landing .ll-card:nth-of-type(2) {
   width: 100%;
   max-width: 366px;
@@ -1219,10 +1299,6 @@ h3 {
   padding: 16px;
   box-sizing: border-box;
 }
-
-
-
-
 
 #licence-landing .ll-card-hero:active {
   opacity: 0.92;
@@ -1254,7 +1330,7 @@ h3 {
   transform: rotate(0deg);
 }
 
-/* List cards */
+/* Master content block rows styling */
 #licence-landing .ll-card {
   background: #fff;
   border-radius: 20px;
@@ -1288,7 +1364,7 @@ h3 {
   margin: 0 16px;
 }
 
-/* Verify row */
+/* Verification list row flex layout values */
 #licence-landing .ll-item-verify {
   flex-direction: row;
   gap: 12px;
@@ -1300,20 +1376,22 @@ h3 {
   line-height: 1;
 }
 
-/* fixed nav */
+/* Fixed App bottom bar structural configuration styles */
 #licence-landing .nav {
-  position: fixed;
+  position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   width: 100%;
-  max-width: 430px;
   height: 100px;
   background: #fff;
   border-top: 1px solid #ddd;
   display: flex;
   justify-content: space-around;
+  z-index: 100;
 }
+
+
 
 
 
@@ -1394,6 +1472,7 @@ h3 {
   background: #fff;
   max-height: 844px;
   position: relative; /* important for absolute positioning */
+  overflow-x: hidden;
     }
 
     /* top header */
@@ -1505,69 +1584,82 @@ h3 {
 
 /*vehicle page */
 
-     #vehicles .app {
+     /* VEHICLES SCREENS - PERFECT FIXED SCROLL FIX */
+#vehicles .app {
   max-width: 390px;
   width: 100%;
   height: 844px;
   margin: 0 auto;
   background: #eef3f6;
   max-height: 844px;
-  position: relative; /* important for absolute positioning */
+  position: relative; 
+  overflow: hidden;
+  
+  /* Forces the master page framework to stack elements cleanly */
+  display: flex;
+  flex-direction: column;
 }
 
 #vehicles .top-header {
-  display: none; /* heading is inline now */
+  display: none !important;
 }
 
-#vehicles .vehicles-content {
-  margin-top: 60px;
-}
-
+/* THE FIXED HEADING LAYER: Anchors statically at the top */
 #vehicles .vehicles-heading {
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 32px;
   font-weight: 700;
-  color: #243544;
-  margin-left: 24px;
-  margin-top: -6.5px;
+  color: #253544;
+  margin: 0;
+  padding: 60px 0 20px 24px; /* Perfectly aligned top and bottom padding gaps */
+  background: #eef3f6;
+  width: 100%;
+  z-index: 10;
+  flex-shrink: 0;
 }
 
+/* THE SCROLL BOX LAYER FIX: Fills the remaining screen area perfectly */
+#vehicles .vehicles-content {
+  flex: 1;
+  display: block;
+  
+  /* FIXED VIEWPORT WINDOW: Prevents container from stretching past the 100px bottom navbar */
+  height: calc(844px - 140px - 100px);
+  
+  overflow-y: scroll !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+  
+  /* Combined layout spacing padding handles the list container setup seamlessly */
+  padding: 0 0 140px 0; 
+  box-sizing: border-box;
+  
+  /* Smooth fade-out layout mask */
+  -webkit-mask: linear-gradient(to bottom, black 0px, black calc(100% - 60px), transparent 100%);
+  mask: linear-gradient(to bottom, black 0px, black calc(100% - 60px), transparent 100%);
+}
+
+#vehicles .vehicles-content::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* White card blocks layouts */
 #vehicles .vehicles-card {
   background: #fff;
   border-radius: 8px;
   box-sizing: border-box;
+  width: 342px;
+  margin-left: 24px;
 }
 
 #vehicles .vehicles-card:nth-of-type(1) {
-  width: 342px;
   height: 91px;
-  margin-bottom: 16px;   /* gap between card 1 and card 2 */
-  margin-left: 24px;
+  margin-bottom: 16px; /* Clean gap spacing layout between card blocks */
 }
 
 #vehicles .vehicles-card:nth-of-type(2) {
-  width: 342px;
   height: 330px;
-  margin-bottom: 204.5px; /* gap between card 2 and the nav */
-  margin-left: 24px;
-}
-
-#vehicles .vehicles-content {
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-  
-  -webkit-mask: linear-gradient(
-    to bottom,
-    black 0px,
-    black calc(100% - 80px),
-    transparent 100%
-  );
-  mask: linear-gradient(
-    to bottom,
-    black 0px,
-    black calc(100% - 80px),
-    transparent 100%
-  );
+  margin-bottom: 20px; /* Reduced old hardcoded break gap spacing layout metric */
 }
 
 #vehicles .vehicles-item {
@@ -1582,14 +1674,14 @@ h3 {
 }
 
 #vehicles .vehicles-item-text h3 {
-  font-size: 16px;      /* was 15px */
-  font-weight: 400;     /* was 500 — screenshot looks regular weight */
+  font-size: 16px; 
+  font-weight: 400; 
   color: #111;
   margin: 0 0 4px;
 }
 
 #vehicles .vehicles-item-text p {
-  font-size: 14px;      /* was 13px */
+  font-size: 14px; 
   color: #6b7280;
   margin: 0;
 }
@@ -1600,19 +1692,32 @@ h3 {
   margin: 0 16px;
 }
 
+/* Fixed App bottom bar structural configuration styles */
 #vehicles .nav {
-  position: fixed;
+  position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   width: 100%;
-  max-width: 430px;
   height: 100px;
   background: #fff;
   border-top: 1px solid #ddd;
   display: flex;
   justify-content: space-around;
+  z-index: 100;
 }
+
+
+/* Add this to your global utilities or targeted page classes */
+#payment .payment-content, 
+#vehicles .vehicles-content, 
+#profile .profile-content, 
+#licence-landing .ll-content, 
+#homepage .content {
+  overscroll-behavior-y: bounce !important; /* Restores mobile rubber-banding on iOS Safari */
+}
+
+
 
 
 
@@ -1649,6 +1754,7 @@ h3 {
   max-height: 844px;
       padding-top: 10px;
   position: relative; /* important for absolute positioning */
+  overflow-x: hidden;
     }
 
     /* HEADER */
@@ -1726,51 +1832,60 @@ h3 {
 
 /* payment page */
 
-    #payment .app {
+    /* PAYMENT PAGE - STYLED TO MATCH PROFILE SCROLLING */
+/* PAYMENT PAGE - COMPLETE SAFARI ENGINE FIX */
+#payment .app {
   max-width: 390px;
   width: 100%;
   height: 844px;
   margin: 0 auto;
   background: #eef3f6;
   max-height: 844px;
-  position: relative; /* important for absolute positioning */
+  position: relative; 
+  overflow: hidden;
+  
+  /* Forces Safari to treat the page as a structured grid frame */
+  display: block; 
 }
 
 #payment .top-header {
-  display: none;
+  display: none !important;
 }
 
 #payment .payment-content {
-  padding: 0 0 100px 0; 
-  height: calc(100vh - 80px);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -webkit-mask: linear-gradient(
-    to bottom,
-    black 0px,
-    black calc(100% - 80px),
-    transparent 100%
-  );
-  mask: linear-gradient(
-    to bottom,
-    black 0px,
-    black calc(100% - 80px),
-    transparent 100%
-  );
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  
+  /* FIXED SAFARI ENVELOPE: Explicitly locks scroll box size to view frame boundaries */
+  height: 744px; 
+  
+  overflow-y: scroll !important; 
+  -webkit-overflow-scrolling: touch !important; /* Forces hardware acceleration */
+  touch-action: pan-y !important;
+  
+  box-sizing: border-box;
+  padding: 0 0 40px 24px; /* Clean tracking gaps */
+  
+  /* Smooth fade-out mask layout logic */
+  -webkit-mask: linear-gradient(to bottom, black 0px, black calc(100% - 60px), transparent 100%);
+  mask: linear-gradient(to bottom, black 0px, black calc(100% - 60px), transparent 100%);
 }
 
 #payment .payment-content::-webkit-scrollbar {
-  display: none;
+  display: none !important;
 }
 
 #payment .payment-heading {
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 32px;
   font-weight: 700;
-  color: #243544;
+  color: #253544;
   margin: 0;
-  padding: 60px 0 20px 24px;
+  padding: 60px 0 0 0px; 
+  background: #eef3f6;   
 }
 
 #payment .payment-card {
@@ -1779,11 +1894,11 @@ h3 {
   margin-bottom: 16px;
   width: 342px;
   height: 310px;
-  margin-left: 24px;
   box-sizing: border-box;
+  margin-top: 28.5px; 
 }
 
-/* center text vertically in each payment item */
+/* Center text layout properties within items */
 #payment .payment-item {
   display: flex;
   flex-direction: column;
@@ -1824,6 +1939,8 @@ h3 {
 
 
 
+
+
 /* profile page */
 
 
@@ -1834,46 +1951,37 @@ h3 {
   margin: 0 auto;
   background: #eef3f6;
   max-height: 844px;
-  position: relative; /* important for absolute positioning */
-}
-
-#profile .profile-content {
-  padding: 0 16px 100px;
-  height: calc(100vh - 80px);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -webkit-mask: linear-gradient(
-    to bottom,
-    black 0px,
-    black calc(100% - 80px),
-    transparent 100%
-  );
-  mask: linear-gradient(
-    to bottom,
-    black 0px,
-    black calc(100% - 80px),
-    transparent 100%
-  );
-}
-
-#profile .profile-content::-webkit-scrollbar {
-  display: none;
+  position: relative; 
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 #profile .profile-heading {
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 32px;
-  font-weight: 700;
-  color: #243544;
+  font-weight: 550;
+  color: #253544;
   margin: 0;
   padding: 60px 0 0 24px;
-  background: #eef1f4;
+  background: #eef3f6;
 }
 
 #profile .profile-content {
-  height: calc(100vh - 80px - 80px); /* minus nav, minus heading height */
-  padding: 0 0 100px 24px;
+  flex: 1;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  padding: 0 0 120px 24px; /* Added proper clearance for absolute bottom nav */
+  box-sizing: border-box;
+  
+  /* Your smooth layout transparency mask */
+  -webkit-mask: linear-gradient(to bottom, black 0px, black calc(100% - 80px), transparent 100%);
+  mask: linear-gradient(to bottom, black 0px, black calc(100% - 80px), transparent 100%);
+}
+
+#profile .profile-content::-webkit-scrollbar {
+  display: none !important;
 }
 
 #profile .profile-card {
@@ -1955,11 +2063,11 @@ h3 {
 }
 
 .nav-link {
-  flex: 1 1 0;        /* equal share of remaining space, not fixed 20% */
+  flex: 1 1 0;        
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  align-items: center; /* centers icon+label horizontally within each slot */
+  align-items: center; 
 }
 
 .nav-link[data-page="licence-landing"] .nav-icon {
@@ -1981,7 +2089,7 @@ h3 {
     * #qr {box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
     #qr body{background:#fff;color:#111}
 
-    #qr .app{max-width:430px;margin:0 auto;min-height:100vh;min-height:100dvh;background:#fff}
+    #qr .app{overflow-x: hidden;max-width:430px;margin:0 auto;min-height:100vh;min-height:100dvh;background:#fff}
 
     /* top bar */
     #qr .top{
@@ -2144,3 +2252,4 @@ h3 {
 .details.fading {
   opacity: 0;
 }
+
