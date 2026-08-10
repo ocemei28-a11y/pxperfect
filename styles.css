@@ -2089,7 +2089,16 @@ h3 {
     * #qr {box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
     #qr body{background:#fff;color:#111}
 
-    #qr .app{overflow-x: hidden;max-width:430px;margin:0 auto;min-height:100vh;min-height:100dvh;background:#fff}
+    #qr .app{
+  overflow-x: hidden;
+  max-width: 390px;
+  width: 100%;
+  height: 844px;
+  margin: 0 auto;
+  max-height: 844px;
+  background: #fff;
+  margin-top: 60px;   /* ← add this line */
+}
 
     /* top bar */
     #qr .top{
