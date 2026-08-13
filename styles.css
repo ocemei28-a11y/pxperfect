@@ -841,7 +841,7 @@ h3 {
   line-height: 1;
   display: block;
   font-family: 'VIC', sans-serif;
-  font-weight: 300;
+  font-weight: 600;
 }
 
 
@@ -2274,14 +2274,7 @@ img {
 }
 
 
-
-
 @font-face {
     font-family: 'VIC';
-    src: url('./VIC-SemiBold.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'VIC';
-    src: url('./VIC-Light.ttf') format('truetype');
+    src: url('./VIC-Regular.ttf') format('truetype');
 }
