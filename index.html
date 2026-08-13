@@ -1127,10 +1127,9 @@ function pinPress(digit) {
           document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
           document.getElementById('splash').style.display = 'block';
 
-          setTimeout(() => {
-            document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-            document.getElementById('homepage').style.display = 'block';
-          }, 700);
+setTimeout(() => {
+  showPage('homepage');
+}, 700);
         }, 1000);
 
       } else {
