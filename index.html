@@ -19,6 +19,60 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Styling for the interactive QR URL editor overlay box */
+    .qr-input-controls {
+      margin: 15px 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .qr-input-controls input {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+    }
+    .qr-input-controls button {
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .qr-input-controls button:active {
+      background-color: #0056b3;
+    }
+    
+    /* FIX: Properly size and center the QR Code so camera scanners can read it */
+    #dynamic-qr-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff; /* White background ensures high contrast */
+      padding: 10px;
+      box-sizing: border-box;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    #dynamic-qr-container img,
+#dynamic-qr-container canvas {
+    width: 300px !important;
+    height: 300px !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 auto !important;
+}
+  </style>
 </head>
 
 <script>
@@ -382,7 +436,6 @@ self.addEventListener("activate", event => {
       </div>
 
     </div>
-  </div>
   </div>
 </div>
 
@@ -954,22 +1007,33 @@ self.addEventListener("activate", event => {
     <div class="content">
       <div class="qr-wrap">
         <div class="qr">
-  <!-- placeholder QR shown during loading -->
-  <img src="qrfake.png" alt="QR Placeholder" id="qrPlaceholder" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1;">
-  
-  <!-- real QR hidden until loaded -->
-  <img src="IMG_1374.jpeg" alt="QR Code" id="qrImg" style="width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition: opacity 0.4s ease;">
+          <!-- placeholder QR shown during loading -->
+          <img src="qrfake.png" alt="QR Placeholder" id="qrPlaceholder" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1;">
+          
+          <!-- Dynamic QR Container -->
+          <div id="dynamic-qr-container"></div>
 
-  <div class="overlay" id="overlay">
-    <div class="loader"></div>
-  </div>
-</div>
+          <div class="overlay" id="overlay">
+            <div class="loader"></div>
+          </div>
         </div>
+      </div>
 
-      <div id="overlay"></div>
-<div class="expires">
-  QR expires <span id="timer">02:00</span>
-</div>
+      <!-- Controls to update QR destination URL -->
+      <div class="qr-input-controls">
+        <input
+          type="url"
+          id="qrUrlInput"
+          placeholder="Paste a link here..."
+          value="https://google.com"
+          onkeydown="if (event.key === 'Enter') updateDynamicQR()"
+        >
+        <button onclick="updateDynamicQR()">Update QR Code</button>
+      </div>
+
+      <div class="expires">
+        QR expires <span id="timer">02:00</span>
+      </div>
 
       <div class="desc">
         By presenting this QR code you <strong>consent</strong> to share some or all of your driver licence information,
@@ -988,7 +1052,43 @@ self.addEventListener("activate", event => {
     </div>
   </div>
 
+  <!-- Dynamic QR Code Library Import -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
   <script>
+
+let dynamicQrObj = null;
+
+function updateDynamicQR() {
+    let urlInput = document.getElementById("qrUrlInput").value.trim();
+
+    if (!urlInput) {
+        alert("Please enter a URL.");
+        return;
+    }
+
+    if (!/^https?:\/\//i.test(urlInput)) {
+        urlInput = "https://" + urlInput;
+        document.getElementById("qrUrlInput").value = urlInput;
+    }
+
+    const qrContainer = document.getElementById("dynamic-qr-container");
+
+    // Clear old QR
+    qrContainer.innerHTML = "";
+
+    try {
+        new QRCode(qrContainer, {
+            text: urlInput,
+            width: 300,
+            height: 300,
+            correctLevel: QRCode.CorrectLevel.L
+        });
+    } catch (error) {
+        console.error("QR generation error:", error);
+        alert("This URL is too large for the QR generator.");
+    }
+}
 
 let lastTab = 'home';
 
@@ -1200,8 +1300,8 @@ function showPage(pageId) {
       "homepage": "1",
       "vehicles": "1",
      "licence-landing": "1",
-      "payment": "1",   // adjust this
-      "profile": "1"    // adjust this
+      "payment": "1",   
+      "profile": "1"    
     };
     const scaleValue = sizes[link.dataset.page] || "1.0";
 img.style.transform = scaleValue.includes("scale") ? scaleValue : `scale(${scaleValue})`;
@@ -1216,14 +1316,15 @@ img.style.transform = scaleValue.includes("scale") ? scaleValue : `scale(${scale
 
   if (pageId === "qr") {
   resetQR();
+  updateDynamicQR();
   const overlay = document.getElementById("overlay");
   const expires = document.querySelector(".expires");
-  const qrImg = document.getElementById("qrImg");
+  const qrContainer = document.getElementById("dynamic-qr-container");
   const qrPlaceholder = document.getElementById("qrPlaceholder");
   
   if (overlay) { overlay.style.display = "flex"; overlay.style.opacity = "1"; }
   if (expires) expires.style.opacity = "0";
-  if (qrImg) qrImg.style.opacity = "0";
+  if (qrContainer) qrContainer.style.opacity = "0";
   if (qrPlaceholder) qrPlaceholder.style.opacity = "1";
 
   setTimeout(() => {
@@ -1232,7 +1333,7 @@ img.style.transform = scaleValue.includes("scale") ? scaleValue : `scale(${scale
       if (overlay) overlay.style.display = "none";
       if (expires) expires.style.opacity = "1";
       if (qrPlaceholder) qrPlaceholder.style.opacity = "0";
-      if (qrImg) qrImg.style.opacity = "1";
+      if (qrContainer) qrContainer.style.opacity = "1";
       const qr = document.querySelector(".qr");
       if (qr) qr.classList.add("unblur");
       startTimer();
@@ -1286,10 +1387,8 @@ const clickTarget = document.getElementById('secretText');
                 document.body.style.height = "auto";
                 
                 /* --- SUCCESS FLASH LOGIC --- */
-                // Turn green instantly on the 5th click
                 clickTarget.classList.add('success-flash');
                 
-                // Hold the green for 1 second, then fade back to normal body color
                 setTimeout(() => {
                     clickTarget.classList.remove('success-flash');
                 }, 1000);
@@ -1332,12 +1431,8 @@ function switchTab(pageId) {
     buttons.forEach((b, i) => b.classList.toggle('active', i === idx));
   }
 
-  // Cap scroll height based on active tab
-  // Cap scroll height based on active tab
-  // Cap scroll height to match the active tab's own content height
   const homeApp = document.querySelector('#home.page');
   if (homeApp && target) {
-    // temporarily make target visible/measurable to get its true height
     const prevPosition = target.style.position;
     const prevVisibility = target.style.visibility;
     target.style.position = 'relative';
@@ -1348,13 +1443,12 @@ function switchTab(pageId) {
     target.style.position = prevPosition;
     target.style.visibility = prevVisibility;
 
-    // add space for header, image, tabs above the details, plus bottom padding
     const topOffset = document.querySelector('.image-section')?.getBoundingClientRect().bottom || 0;
-    const extraSpace = 120; // adjust this to taste — space for nav/padding at bottom
+    const extraSpace = 120;
 
     homeApp.style.overflowY = 'auto';
-    homeApp.style.maxHeight = 'none'; // let it size naturally...
-    homeApp.style.height = (contentHeight + topOffset + extraSpace) + 'px'; // ...then cap total scrollable height
+    homeApp.style.maxHeight = 'none'; 
+    homeApp.style.height = (contentHeight + topOffset + extraSpace) + 'px'; 
   }
 }
 
@@ -1367,7 +1461,6 @@ function playToggleSound(unlocked) {
   gainNode.connect(ctx.destination);
 
   oscillator.type = 'sine';
-  // higher pitch for unlock, lower pitch for lock
   oscillator.frequency.value = unlocked ? 880 : 440;
 
   gainNode.gain.setValueAtTime(0.2, ctx.currentTime);
@@ -1382,7 +1475,6 @@ function playToggleSound(unlocked) {
 document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
 document.getElementById('splash').style.display = 'block';
 
-// After 0.5s go to pin
 // After 0.5s go to pin
 setTimeout(() => {
   document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
