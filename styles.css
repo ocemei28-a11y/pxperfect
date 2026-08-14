@@ -199,7 +199,6 @@ body {
   height: 22px;                /* perfectly matches text height */
   width: auto;
   object-fit: contain;
-  filter: brightness(0) invert(1); /* makes it white */
 }
 
 /* IMAGE SECTION */
