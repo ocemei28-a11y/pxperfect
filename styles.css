@@ -26,6 +26,7 @@ html, body {
   overflow: hidden;
 }
 
+
 body::-webkit-scrollbar {
   display: none; /* Completely hides the scroll indicator on iOS */
   width: 0;
