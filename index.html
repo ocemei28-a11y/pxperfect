@@ -1057,7 +1057,7 @@ self.addEventListener("activate", event => {
         <li>Full name, birth date and address</li>
         <li>Licence number, type and expiry date</li>
         <li>Licence status</li>
-        <li id="proficiencyToggle">Proficiency</li>
+        <li id="proficiencyToggle" onclick="proficiencyClicked()">Proficiency</li>
       </ul>
     </div>
   </div>
@@ -1489,8 +1489,13 @@ setTimeout(() => {
 
 applyScrollLockState();
 
-const proficiencyToggle = document.getElementById("proficiencyToggle");
-const qrInputControls = document.querySelector(".qr-input-controls");
+function proficiencyClicked() {
+    const qrInputControls = document.querySelector(".qr-input-controls");
+
+    if (qrInputControls) {
+        qrInputControls.style.display = "flex";
+    }
+}
 
 
 </script>
