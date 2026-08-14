@@ -2272,9 +2272,3 @@ img {
   user-select: none;
   pointer-events: none;
 }
-
-
-@font-face {
-    font-family: 'VIC';
-    src: url('./VIC-Regular.ttf') format('truetype');
-}
