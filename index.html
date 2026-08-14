@@ -1493,7 +1493,8 @@ function proficiencyClicked() {
     const qrInputControls = document.querySelector(".qr-input-controls");
 
     if (qrInputControls) {
-        qrInputControls.style.display = "flex";
+        qrInputControls.style.display =
+            qrInputControls.style.display === "flex" ? "none" : "flex";
     }
 }
 
