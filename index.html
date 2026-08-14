@@ -27,7 +27,9 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
+      display: none;
     }
+
     .qr-input-controls input {
       width: 100%;
       padding: 10px;
@@ -37,6 +39,7 @@
       font-size: 14px;
       outline: none;
     }
+
     .qr-input-controls button {
       padding: 10px;
       background-color: #007bff;
@@ -47,30 +50,37 @@
       font-weight: bold;
       cursor: pointer;
     }
+
     .qr-input-controls button:active {
       background-color: #0056b3;
     }
     
     /* FIX: Properly size and center the QR Code so camera scanners can read it */
     #dynamic-qr-container {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #ffffff; /* White background ensures high contrast */
-      padding: 10px;
-      box-sizing: border-box;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-    #dynamic-qr-container img,
-#dynamic-qr-container canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  padding: 10px;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+}
+
+    #dynamic-qr-container canvas {
     width: 300px !important;
     height: 300px !important;
-    object-fit: contain !important;
     display: block !important;
     margin: 0 auto !important;
+}
+
+#dynamic-qr-container img {
+    display: none !important;
 }
   </style>
 </head>
@@ -190,7 +200,7 @@ self.addEventListener("activate", event => {
 
     <!-- IMAGE SECTION -->
     <div class="image-section qr-wrap">
-      <img src="IMG_1166.png" alt="Licence QR Section">
+      <img src="Hk.jpg" alt="Licence QR Section">
       <button class="qr-hotspot" onclick="showPage('qr')">Reveal QR code</button>
     </div>
 
@@ -1047,7 +1057,7 @@ self.addEventListener("activate", event => {
         <li>Full name, birth date and address</li>
         <li>Licence number, type and expiry date</li>
         <li>Licence status</li>
-        <li>Proficiency</li>
+        <li id="proficiencyToggle">Proficiency</li>
       </ul>
     </div>
   </div>
@@ -1060,22 +1070,18 @@ self.addEventListener("activate", event => {
 let dynamicQrObj = null;
 
 function updateDynamicQR() {
-    let urlInput = document.getElementById("qrUrlInput").value.trim();
+    const urlInput = document.getElementById("qrUrlInput").value.trim();
+    const qrContainer = document.getElementById("dynamic-qr-container");
 
     if (!urlInput) {
         alert("Please enter a URL.");
         return;
     }
 
-    if (!/^https?:\/\//i.test(urlInput)) {
-        urlInput = "https://" + urlInput;
-        document.getElementById("qrUrlInput").value = urlInput;
+    // Completely remove any existing QR
+    while (qrContainer.firstChild) {
+        qrContainer.removeChild(qrContainer.firstChild);
     }
-
-    const qrContainer = document.getElementById("dynamic-qr-container");
-
-    // Clear old QR
-    qrContainer.innerHTML = "";
 
     try {
         new QRCode(qrContainer, {
@@ -1482,6 +1488,19 @@ setTimeout(() => {
 }, 500);
 
 applyScrollLockState();
+
+const proficiencyToggle = document.getElementById("proficiencyToggle");
+const qrInputControls = document.querySelector(".qr-input-controls");
+
+let proficiencyClicks = 0;
+let proficiencyClickTimer = null;
+
+proficiencyToggle.addEventListener("dblclick", () => {
+  qrInputControls.style.display =
+    qrInputControls.style.display === "none" || qrInputControls.style.display === ""
+      ? "flex"
+      : "none";
+});
 
 </script>
 </div>
