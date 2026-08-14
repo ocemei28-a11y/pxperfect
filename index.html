@@ -1498,28 +1498,12 @@ const qrInputControls = document.querySelector(".qr-input-controls");
 let proficiencyClicks = 0;
 let proficiencyClickTimer = null;
 
-function toggleQRControls() {
-    proficiencyClicks++;
-
-    if (proficiencyClicks === 1) {
-        proficiencyClickTimer = setTimeout(() => {
-            proficiencyClicks = 0;
-        }, 500);
-    }
-
-    if (proficiencyClicks === 2) {
-        clearTimeout(proficiencyClickTimer);
-        proficiencyClicks = 0;
-
-        if (qrInputControls.style.display === "flex") {
-            qrInputControls.style.display = "none";
-        } else {
-            qrInputControls.style.display = "flex";
-        }
-    }
-}
-
-proficiencyToggle.addEventListener("click", toggleQRControls);
+proficiencyToggle.addEventListener("dblclick", () => {
+  qrInputControls.style.display =
+    qrInputControls.style.display === "none" || qrInputControls.style.display === ""
+      ? "flex"
+      : "none";
+});
 </script>
 </div>
 </body>
