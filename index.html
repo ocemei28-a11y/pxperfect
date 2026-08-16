@@ -181,23 +181,25 @@ self.addEventListener("activate", event => {
 
     <!-- HEADER -->
     <header class="top-header">
-      <button class="back" onclick="showPage('homepage')">‹</button>
+      <button class="back" onclick="showPage('homepage')" style="display:flex; align-items:center; justify-content:center;">
+  <img src="backbutton.png" alt="Back" style="width:10.7px; height:18.3px; display:block;">
+</button>
       <div class="title">View details</div>
     </header>
 
     <div class="refresh lastRefreshed"></div>
 
-    <!-- RED LICENCE BAR -->
-    <div class="licence-bar">
-  <img src="IMG_0124.jpeg" alt="Learner Permit">
-</div>
+    <!-- YELLOW LICENCE BAR -->
+   <div class="bar-shadow"></div>
+<div class="colour-bar"></div>
     
 
     <!-- IMAGE SECTION -->
     <div class="image-section qr-pi wrap">
-      <img src="IMG_1166.png" alt="Licence QR Section">
-      <button class="qr-hotspot" onclick="showPage('qr')">Reveal QR code</button>
-    </div>
+  <img src="IMG_1166.png" alt="Licence QR Section">
+  <img src="overlay-image.png" alt="Overlay" class="image-overlay">
+  <button class="qr-hotspot" onclick="showPage('qr')">Reveal QR code</button>
+</div>
 
     <!-- TABS -->
     <div class="segmented">
@@ -222,7 +224,7 @@ self.addEventListener("activate", event => {
         <span>Permit type</span>
         <p class="car-permit">Car <span class="permit-badge"><img src="IMG_0132.jpeg" alt="Permit Icon" class="permit-icon" /></span></p>
       </div>
-      <div><span>Date of birth</span><strong>13 April 2008</strong></div>
+      <div class="dob-cell"><span>Date of birth</span><strong>13 April 2008</strong></div>
     </div>
     <div class="divider"></div>
     <div class="single"><span>Address</span><strong>109 LOWER DANDENONG RD</strong><strong>MENTONE VIC 3194</strong></div>
@@ -231,7 +233,7 @@ self.addEventListener("activate", event => {
     <div class="section-banner"><h3>Car learner permit details</h3></div>
     <div class="grid-2">
       <div class="cell"><span>Permit status</span><strong><img src="Tick.png" alt="Tick" class="status-tick" />Current</strong></div>
-      <div class="cell"><span>Learner</span><strong><img src="IMG_0132.jpeg" alt="Permit Icon" class="proficiency-logo" />P1</strong></div>
+      <div class="cell"><span>Proficiency</span><strong><img src="IMG_0132.jpeg" alt="Permit Icon" class="proficiency-logo" />Learner</strong></div>
       <div class="cell"><span>Issue date</span><strong>20 Apr 2024</strong></div>
       <div class="cell"><span>Expiry</span><strong>20 Apr 2034</strong></div>
     </div>
@@ -1203,7 +1205,7 @@ function updateRefreshTime() {
   hours = hours % 12 || 12;
   const formatted = `${day} ${date} ${month} ${year} ${hours}:${minutes}${ampm}`;
   document.querySelectorAll(".lastRefreshed").forEach(el => {
-    el.textContent = "Last refreshed: " + formatted;
+    el.innerHTML = '<strong>Last refreshed:</strong> ' + formatted;
   });
 }
 
@@ -1248,37 +1250,41 @@ function pinDelete() {
 }
 
 function showPage(pageId) {
+  navigateToPage(pageId);
+}
+
+function navigateToPage(pageId) {
   const pages = document.querySelectorAll(".page");
 
   if (pageId === 'home') {
-    const overlay = document.createElement('div');
-    overlay.id = 'transition-overlay';
-    document.body.appendChild(overlay);
-    overlay.innerHTML = `<div class="transition-spinner"></div>`;
+    // ... your existing 'home' block, unchanged, just moved in here
+    const overlayTransition = document.createElement('div');
+    overlayTransition.id = 'transition-overlay';
+    document.body.appendChild(overlayTransition);
+    overlayTransition.innerHTML = `<div class="transition-spinner"></div>`;
     requestAnimationFrame(() => {
-      overlay.classList.add('slide-in');
+      overlayTransition.classList.add('slide-in');
     });
     setTimeout(() => {
-  pages.forEach(p => p.style.display = 'none');
-  document.getElementById('home').style.display = 'block';
-  updateRefreshTime();
+      pages.forEach(p => p.style.display = 'none');
+      document.getElementById('home').style.display = 'block';
+      updateRefreshTime();
 
-  // Init pill now that #home is visible
-  const homeSeg = document.querySelector('#home .segmented');
-  if (homeSeg) {
-    const firstBtn = homeSeg.querySelector('button');
-    const pill = homeSeg.querySelector('.slider-pill');
-    if (pill && firstBtn) {
-      pill.style.transition = 'none';
-      pill.style.left = firstBtn.offsetLeft + 'px';
-      pill.style.width = firstBtn.offsetWidth + 'px';
-      requestAnimationFrame(() => { pill.style.transition = ''; });
-    }
-  }
+      const homeSeg = document.querySelector('#home .segmented');
+      if (homeSeg) {
+        const firstBtn = homeSeg.querySelector('button');
+        const pill = homeSeg.querySelector('.slider-pill');
+        if (pill && firstBtn) {
+          pill.style.transition = 'none';
+          pill.style.left = firstBtn.offsetLeft + 'px';
+          pill.style.width = firstBtn.offsetWidth + 'px';
+          requestAnimationFrame(() => { pill.style.transition = ''; });
+        }
+      }
 
-  overlay.classList.add('fade-out');
-  setTimeout(() => overlay.remove(), 300);
-}, 2000);
+      overlayTransition.classList.add('fade-out');
+      setTimeout(() => overlayTransition.remove(), 300);
+    }, 2000);
     return;
   }
 
@@ -1288,58 +1294,58 @@ function showPage(pageId) {
   page.style.display = "block";
 
   document.querySelectorAll(".nav .nav-link").forEach(link => {
-  const img = link.querySelector(".nav-icon");
-  if (!img) return;
-  const isActive = link.dataset.page === pageId;
+    const img = link.querySelector(".nav-icon");
+    if (!img) return;
+    const isActive = link.dataset.page === pageId;
 
-  if (isActive) {
-    img.src = img.dataset.active;
-    link.classList.add("active");
+    if (isActive) {
+      img.src = img.dataset.active;
+      link.classList.add("active");
 
-    const sizes = {
-      "homepage": "1",
-      "vehicles": "1",
-     "licence-landing": "1",
-      "payment": "1",   
-      "profile": "1"    
-    };
-    const scaleValue = sizes[link.dataset.page] || "1.0";
-img.style.transform = scaleValue.includes("scale") ? scaleValue : `scale(${scaleValue})`;
-  } else {
-    link.classList.remove("active");
-    img.src = img.dataset.default;
-    img.style.transform = "scale(1)";
-  }
-});
+      const sizes = {
+        "homepage": "1",
+        "vehicles": "1",
+        "licence-landing": "1",
+        "payment": "1",
+        "profile": "1"
+      };
+      const scaleValue = sizes[link.dataset.page] || "1.0";
+      img.style.transform = scaleValue.includes("scale") ? scaleValue : `scale(${scaleValue})`;
+    } else {
+      link.classList.remove("active");
+      img.src = img.dataset.default;
+      img.style.transform = "scale(1)";
+    }
+  });
 
   updateRefreshTime();
 
   if (pageId === "qr") {
-  resetQR();
-  updateDynamicQR();
-  const overlay = document.getElementById("overlay");
-  const expires = document.querySelector(".expires");
-  const qrContainer = document.getElementById("dynamic-qr-container");
-  const qrPlaceholder = document.getElementById("qrPlaceholder");
-  
-  if (overlay) { overlay.style.display = "flex"; overlay.style.opacity = "1"; }
-  if (expires) expires.style.opacity = "0";
-  if (qrContainer) qrContainer.style.opacity = "0";
-  if (qrPlaceholder) qrPlaceholder.style.opacity = "1";
+    resetQR();
+    updateDynamicQR();
+    const overlayQR = document.getElementById("overlay");
+    const expires = document.querySelector(".expires");
+    const qrContainer = document.getElementById("dynamic-qr-container");
+    const qrPlaceholder = document.getElementById("qrPlaceholder");
 
-  setTimeout(() => {
-    if (overlay) overlay.style.opacity = "0";
+    if (overlayQR) { overlayQR.style.display = "flex"; overlayQR.style.opacity = "1"; }
+    if (expires) expires.style.opacity = "0";
+    if (qrContainer) qrContainer.style.opacity = "0";
+    if (qrPlaceholder) qrPlaceholder.style.opacity = "1";
+
     setTimeout(() => {
-      if (overlay) overlay.style.display = "none";
-      if (expires) expires.style.opacity = "1";
-      if (qrPlaceholder) qrPlaceholder.style.opacity = "0";
-      if (qrContainer) qrContainer.style.opacity = "1";
-      const qr = document.querySelector(".qr");
-      if (qr) qr.classList.add("unblur");
-      startTimer();
-    }, 400);
-  }, 3000);
-}
+      if (overlayQR) overlayQR.style.opacity = "0";
+      setTimeout(() => {
+        if (overlayQR) overlayQR.style.display = "none";
+        if (expires) expires.style.opacity = "1";
+        if (qrPlaceholder) qrPlaceholder.style.opacity = "0";
+        if (qrContainer) qrContainer.style.opacity = "1";
+        const qr = document.querySelector(".qr");
+        if (qr) qr.classList.add("unblur");
+        startTimer();
+      }, 400);
+    }, 3000);
+  }
 }
 
 // SCROLL RESISTANCE — all three here, outside showPage
@@ -1401,9 +1407,19 @@ const clickTarget = document.getElementById('secretText');
         });
 
 function switchTab(pageId) {
+  const overlay = document.querySelector('.qr-pi .image-overlay');
+  if (overlay) {
+    overlay.style.transition = 'opacity 0.4s ease';
+    overlay.style.opacity = '0.8';
+    setTimeout(() => {
+      overlay.style.opacity = '1';
+    }, 200);
+  }
+
   lastTab = pageId;
   const tabMap = { 'home': 'tab-home', 'identity': 'tab-identity', 'age': 'tab-age' };
   const btnIndex = { 'home': 0, 'identity': 1, 'age': 2 };
+  // ...rest stays exactly as it already is
 
   // Fade all out
   document.querySelectorAll('.tab-content').forEach(el => {
@@ -1491,7 +1507,6 @@ function proficiencyClicked() {
             qrInputControls.style.display === "flex" ? "none" : "flex";
     }
 }
-
 
 </script>
 </div>
