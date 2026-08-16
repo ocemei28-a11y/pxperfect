@@ -137,13 +137,12 @@ body {
 
 /* HEADER */
 .top-header {
-  display: flex;
+ display: flex;
   align-items: center;
   justify-content: center; /* center all children */
   position: relative;      /* needed for back button absolute positioning */
   height: 56px;
   padding: 0 16px;
-  border-bottom: 1px solid #eee;
   padding-top: env(safe-area-inset-top);
   height: calc(56px + env(safe-area-inset-top));
   z-index: 10;
@@ -151,7 +150,8 @@ body {
 
 .top-header .title {
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
+  color: #3C4A60;
 }
 
 .top-header .back {
@@ -165,8 +165,12 @@ body {
 .refresh {
   text-align: center;
   font-size: 13px;
-  color: #8b8b8b;
+  color: #3C4A60;
   padding: 10px 0;
+}
+
+.refresh strong {
+  font-weight: 600;
 }
 
 /* LICENCE BAR */
@@ -248,7 +252,7 @@ body {
   transform: translateY(-50%);
   left: 4px; /* Adjust this value if you need to align the pill starting point */
   
-  background: #1f3b63;
+  background: #253544;
   border-radius: 999px;
   transition: left 0.6s ease, width 0.6s ease;
   z-index: 0;
@@ -270,6 +274,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   color: #1f2937;
+  
   transition: color 0.2s ease;
   position: relative;
   z-index: 1;
@@ -365,8 +370,9 @@ button.active {
 .details h2 {
   margin-bottom: 20px;
   margin-top: 58px;
-  font-size: 21.5px;
+  font-size: 20px;
   color: #3c4a60;
+  font-family: 'VIC-SemiBold', -apple-system, sans-serif;
 }
 
 #tab-identity h2 {
@@ -376,24 +382,26 @@ button.active {
 .row{
   display:flex;
   justify-content:flex-start; /* don't push to far right */
-  gap: 62px;                  /* controls how "middle" the right column is */
+  gap: 74px;                  /* controls how "middle" the right column is */
   margin-bottom: 24px;
   color: #3c4a60;
 }
 
-.row > div{
-  width: 150px;               /* makes both columns consistent */
-}
-
 
 .row span {
-  font-size: 12px;
-  color: #6d7788;
+  font-size: 14px;
+  color: #6D7788;
+}
+
+.row .dob-cell {
+  margin-left: 21px;   /* adjust to taste */
 }
 
 .row strong {
   display: block;
   margin-top: 4px;
+  font-size: 16px;
+  font-family: 'VIC-SemiBold', -apple-system, sans-serif;
 }
 
 .badge {
@@ -436,6 +444,7 @@ h3 {
 .single strong {
   display: block;
   margin-top: 4px;
+  font-family: 'VIC-SemiBold', -apple-system, sans-serif;
 }
 
 .muted {
@@ -487,21 +496,21 @@ h3 {
   display: block;
   margin-top: 4px;
   color: #3c4a60;
+  font-family: 'VIC-SemiBold', -apple-system, sans-serif;
 }
 
 .section-banner {
   position: relative;
   margin: 24px -16px 12px;       /* negative horizontal margin to stretch full width of container */
-  background-color: #E8EAF0;   /* light gray-blue background */
+  background-color: #ECEDEF;   /* light gray-blue background */
   padding: 8px 16px;           /* vertical and horizontal padding */
-  border-radius: 4px;          /* optional: slightly rounded corners */
 }
 
 .section-banner h3 {
   margin: 0;                   /* remove default margin */
   font-size: 0.875rem;         /* text-sm in Tailwind (14px) */
   font-weight: 600;             /* semibold */
-  color: #5B6B7C;              /* muted dark gray-blue text */
+  color: ##3C4A60;              /* muted dark gray-blue text */
 }
 .signature-image {
   width: auto;           /* do not stretch full width */
@@ -624,7 +633,7 @@ h3 {
 
   /* 👇 move these until it sits on top of the screenshot button */
   left: 57.5%;
-  top: 70%;
+  top: 33%;
   width: 32%;
   height: 14%;
 
@@ -2278,4 +2287,46 @@ img {
   -webkit-touch-callout: none;
   user-select: none;
   pointer-events: none;
+}
+
+.bar-shadow {
+  width: 844px;
+  height: 8px;
+  background: linear-gradient(to top, #D7D7D7, #FFFFFF);
+}
+
+.colour-bar {
+  width: 844px;
+  height: 67px;
+  background-color: #FFD33E;
+}
+
+.image-section {
+  position: relative;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 20px;
+  right: 93px;
+  width: 165px;
+  height: 220px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.image-overlay.flicker {
+  animation: flicker 0.4s ease-in-out;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; background: red; }
+}
+
+@font-face {
+  font-family: 'VIC-SemiBold';
+  src: url('VIC-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
 }
