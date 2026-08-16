@@ -164,7 +164,7 @@ body {
 /* REFRESH */
 .refresh {
   text-align: center;
-  font-size: 13px;
+  font-size: 12px;
   color: #3C4A60;
   padding: 10px 0;
 }
@@ -274,6 +274,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   color: #1f2937;
+  font-family: 'VIC-SemiBold', -apple-system, sans-serif;
   
   transition: color 0.2s ease;
   position: relative;
@@ -376,7 +377,7 @@ button.active {
 }
 
 #tab-identity h2 {
-  margin-top: -10px;
+  margin-top: 42px;
 }
 
 .row{
@@ -399,7 +400,7 @@ button.active {
 
 .row strong {
   display: block;
-  margin-top: 4px;
+  margin-top: 6px;
   font-size: 16px;
   font-family: 'VIC-SemiBold', -apple-system, sans-serif;
 }
@@ -538,10 +539,12 @@ h3 {
 }
 
 .permit-icon {
-  width: 24px;                   /* roughly text-xs size */
-  height: 24px;
+  width: 20px;                   /* roughly text-xs size */
+  height: 20px;
   object-fit: contain;           /* maintain image proportions */
   display: block;
+  margin-top: 3px;
+  border-radius: 2px;
 }
 
 .status-tick {
@@ -632,8 +635,8 @@ h3 {
   position: absolute;
 
   /* 👇 move these until it sits on top of the screenshot button */
-  left: 57.5%;
-  top: 33%;
+  left: 58.5%;
+  top: 72%;
   width: 32%;
   height: 14%;
 
@@ -662,12 +665,10 @@ h3 {
   font-size: 12px;
   color: #8b8b8b;
   padding: 1px 6px 10px;
-  padding-top: -50px;
 }
 
 #tab-age {
-  padding-top: -50px;
-  margin-top: -50x;
+  margin-top: 40px;
 }
 
 #tab-age .age-row {
@@ -847,7 +848,7 @@ h3 {
   object-fit: contain;
   display: block;
   margin-top: 11px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, margin-top 0.3s ease;
   transform-origin: center center;
   flex-shrink: 0;
 }
@@ -2290,15 +2291,64 @@ img {
 }
 
 .bar-shadow {
-  width: 844px;
+  width: 100%;
+  max-width: 390px;
   height: 8px;
   background: linear-gradient(to top, #D7D7D7, #FFFFFF);
+  margin: 0 auto;
+  overflow: visible;
 }
 
 .colour-bar {
-  width: 844px;
-  height: 67px;
+  width: 100%;
+  max-width: 390px;
+  min-height: 70px;
+  height: auto;
   background-color: #FFD33E;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 14px 0 14px 20px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  position: relative;   /* needed so the logo can position off this box */
+}
+
+.bar-logo {
+  position: absolute;
+  right: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 85px;
+  height: 19px;
+  filter: brightness(0);
+  -webkit-filter: brightness(0);
+  object-fit: contain;
+}
+
+.bar-title {
+  margin: 0;
+  padding: 0;
+  font-weight: 650;
+  font-size: 15px;
+  line-height: 20px;
+  color: #111;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.bar-subtitle {
+  margin: 4px 0 0 0;
+  padding: 0;
+  font-size: 15px;
+  line-height: 16px;
+  color: #111;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  white-space: nowrap;
+  overflow: visible;
+  font-weight: 500;
 }
 
 .image-section {
@@ -2317,6 +2367,47 @@ img {
 
 .image-overlay.flicker {
   animation: flicker 0.4s ease-in-out;
+}
+
+.nav-icon-wrap {
+  position: relative;
+  display: block;
+  width: 36px;
+  height: 36px;
+}
+
+.nav-icon-wrap .nav-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.nav-icon-default {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.nav-icon-active {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.nav-link.active .nav-icon-default {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.nav-link.active .nav-icon-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.nav-link span:last-child {
+  transition: color 0.25s ease, font-weight 0.25s ease;
 }
 
 @keyframes flicker {
