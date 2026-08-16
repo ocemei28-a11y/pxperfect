@@ -191,7 +191,11 @@ self.addEventListener("activate", event => {
 
     <!-- YELLOW LICENCE BAR -->
    <div class="bar-shadow"></div>
-<div class="colour-bar"></div>
+<div class="colour-bar">
+  <p class="bar-title">LEARNER PERMIT</p>
+  <p class="bar-subtitle">Victoria Australia</p>
+  <img src="IMG_0437.png" alt="Logo" class="bar-logo">
+</div>
     
 
     <!-- IMAGE SECTION -->
@@ -209,7 +213,7 @@ self.addEventListener("activate", event => {
       <button onclick="switchTab('age')">Age</button>
     </div>
 
-  <div style="position: relative;">
+  <div style="position: absolute;">
 
   <!-- TAB 1: Permit -->
   <div class="details tab-content" id="tab-home" style="opacity:1; transition: opacity 0.6s ease;">
@@ -321,75 +325,81 @@ self.addEventListener("activate", event => {
     <nav class="nav">
 
   <!-- HOME -->
-  <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="homepage"
-     onclick="showPage('homepage'); handleHomeNavTap();">
+ <!-- HOME -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="homepage"
+   onclick="showPage('homepage'); handleHomeNavTap();">
 
-      <img
-          class="nav-icon"
-          src="homelogo.png"
-          data-default="homelogo.png"
-          data-active="activehomenavicon.png">
+    <img
+        class="nav-icon"
+        src="homelogo.png"
+        data-default="homelogo.png"
+        data-active="activehomenavicon.png">
 
-      <span>Home</span>
-  </a>
+    <span>Home</span>
+</a>
 
-  <!-- VEHICLES -->
-  <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="vehicles"
-     onclick="showPage('vehicles')">
+<!-- VEHICLES -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="vehicles"
+   onclick="showPage('vehicles')">
 
-      <img
-          class="nav-icon"
-          src="Vehicleiconnav.png"
-          data-default="Vehicleiconnav.png"
-          data-active="activecariconnav.png">
+    <img
+        class="nav-icon"
+        src="Vehicleiconnav.png"
+        data-default="Vehicleiconnav.png"
+        data-active="activecariconnav.png">
 
-      <span>Vehicles</span>
-  </a>
+    <span>Vehicles</span>
+</a>
 
-  <!-- LICENCE -->
-  <a href="javascript:void(0)"
+<!-- LICENCE -->
+<a href="javascript:void(0)"
    class="nav-link"
    data-page="licence-landing"
    onclick="showPage('licence-landing')">
-  <img class="nav-icon" src="licenceiconnav.png"
-       data-default="licenceiconnav.png"
-       data-active="activelicenseiconnav.png">
-  <span>Licence</span>
+
+    <img
+        class="nav-icon"
+        src="licenceiconnav.png"
+        data-default="licenceiconnav.png"
+        data-active="activelicenseiconnav.png">
+
+    <span>Licence</span>
 </a>
 
-  <!-- PAYMENT -->
-  <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="payment"
-     onclick="showPage('payment')">
+<!-- PAYMENT -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="payment"
+   onclick="showPage('payment')">
 
-      <img
-          class="nav-icon"
-          src="paymenticonnav.png"
-          data-default="paymenticonnav.png"
-          data-active="activepaymenticonnav.png">
+    <img
+        class="nav-icon"
+        src="paymenticonnav.png"
+        data-default="paymenticonnav.png"
+        data-active="activepaymenticonnav.png">
 
-      <span>Payments</span>
-  </a>
+    <span>Payments</span>
+</a>
 
-  <!-- PROFILE -->
-  <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="profile"
-     onclick="showPage('profile')">
+<!-- PROFILE -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="profile"
+   onclick="showPage('profile')">
 
-      <img
-          class="nav-icon"
-          src="profileiconnav.png"
-          data-default="profileiconnav.png"
-          data-active="activeprofileiconnav.png">
+    <img
+        class="nav-icon"
+        src="profileiconnav.png"
+        data-default="profileiconnav.png"
+        data-active="activeprofileiconnav.png">
 
-      <span>Profile</span>
-  </a>
+    <span>Profile</span>
+</a>
+
 
 </nav>
 
@@ -502,75 +512,80 @@ self.addEventListener("activate", event => {
     </div>
 
     <nav class="nav">
-      <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="homepage"
-     onclick="showPage('homepage'); handleHomeNavTap();">
+     <!-- HOME -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="homepage"
+   onclick="showPage('homepage'); handleHomeNavTap();">
 
-      <img
-          class="nav-icon"
-          src="homelogo.png"
-          data-default="homelogo.png"
-          data-active="activehomenavicon.png">
+    <img
+        class="nav-icon"
+        src="homelogo.png"
+        data-default="homelogo.png"
+        data-active="activehomenavicon.png">
 
-      <span>Home</span>
-  </a>
+    <span>Home</span>
+</a>
 
-  <!-- VEHICLES -->
-  <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="vehicles"
-     onclick="showPage('vehicles')">
+<!-- VEHICLES -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="vehicles"
+   onclick="showPage('vehicles')">
 
-      <img
-          class="nav-icon"
-          src="Vehicleiconnav.png"
-          data-default="Vehicleiconnav.png"
-          data-active="activecariconnav.png">
+    <img
+        class="nav-icon"
+        src="Vehicleiconnav.png"
+        data-default="Vehicleiconnav.png"
+        data-active="activecariconnav.png">
 
-      <span>Vehicles</span>
-  </a>
+    <span>Vehicles</span>
+</a>
 
-  <!-- LICENCE -->
-  <a href="javascript:void(0)"
+<!-- LICENCE -->
+<a href="javascript:void(0)"
    class="nav-link"
    data-page="licence-landing"
    onclick="showPage('licence-landing')">
-  <img class="nav-icon" src="licenceiconnav.png"
-       data-default="licenceiconnav.png"
-       data-active="activelicenseiconnav.png">
-  <span>Licence</span>
+
+    <img
+        class="nav-icon"
+        src="licenceiconnav.png"
+        data-default="licenceiconnav.png"
+        data-active="activelicenseiconnav.png">
+
+    <span>Licence</span>
 </a>
 
-  <!-- PAYMENT -->
-  <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="payment"
-     onclick="showPage('payment')">
+<!-- PAYMENT -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="payment"
+   onclick="showPage('payment')">
 
-      <img
-          class="nav-icon"
-          src="paymenticonnav.png"
-          data-default="paymenticonnav.png"
-          data-active="payment-active.png">
+    <img
+        class="nav-icon"
+        src="paymenticonnav.png"
+        data-default="paymenticonnav.png"
+        data-active="activepaymenticonnav.png">
 
-      <span>Payments</span>
-  </a>
+    <span>Payments</span>
+</a>
 
-  <!-- PROFILE -->
-  <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="profile"
-     onclick="showPage('profile')">
+<!-- PROFILE -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="profile"
+   onclick="showPage('profile')">
 
-      <img
-          class="nav-icon"
-          src="profileiconnav.png"
-          data-default="profileiconnav.png"
-          data-active="activeprofileiconnav.png">
+    <img
+        class="nav-icon"
+        src="profileiconnav.png"
+        data-default="profileiconnav.png"
+        data-active="activeprofileiconnav.png">
 
-      <span>Profile</span>
-  </a>
+    <span>Profile</span>
+</a>
     </nav>
 
   </div>
@@ -624,75 +639,80 @@ self.addEventListener("activate", event => {
     </div>
 
     <nav class="nav">
-      <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="homepage"
-     onclick="showPage('homepage'); handleHomeNavTap();">
+     <!-- HOME -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="homepage"
+   onclick="showPage('homepage'); handleHomeNavTap();">
 
-      <img
-          class="nav-icon"
-          src="homelogo.png"
-          data-default="homelogo.png"
-          data-active="activehomenavicon.png">
+    <img
+        class="nav-icon"
+        src="homelogo.png"
+        data-default="homelogo.png"
+        data-active="activehomenavicon.png">
 
-      <span>Home</span>
-  </a>
+    <span>Home</span>
+</a>
 
-  <!-- VEHICLES -->
-  <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="vehicles"
-     onclick="showPage('vehicles')">
+<!-- VEHICLES -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="vehicles"
+   onclick="showPage('vehicles')">
 
-      <img
-          class="nav-icon"
-          src="Vehicleiconnav.png"
-          data-default="Vehicleiconnav.png"
-          data-active="activecariconnav.png">
+    <img
+        class="nav-icon"
+        src="Vehicleiconnav.png"
+        data-default="Vehicleiconnav.png"
+        data-active="activecariconnav.png">
 
-      <span>Vehicles</span>
-  </a>
+    <span>Vehicles</span>
+</a>
 
-  <!-- LICENCE -->
-  <a href="javascript:void(0)"
+<!-- LICENCE -->
+<a href="javascript:void(0)"
    class="nav-link"
    data-page="licence-landing"
    onclick="showPage('licence-landing')">
-  <img class="nav-icon" src="licenceiconnav.png"
-       data-default="licenceiconnav.png"
-       data-active="activelicenseiconnav.png">
-  <span>Licence</span>
+
+    <img
+        class="nav-icon"
+        src="licenceiconnav.png"
+        data-default="licenceiconnav.png"
+        data-active="activelicenseiconnav.png">
+
+    <span>Licence</span>
 </a>
 
-  <!-- PAYMENT -->
-  <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="payment"
-     onclick="showPage('payment')">
+<!-- PAYMENT -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="payment"
+   onclick="showPage('payment')">
 
-      <img
-          class="nav-icon"
-          src="paymenticonnav.png"
-          data-default="paymenticonnav.png"
-          data-active="payment-active.png">
+    <img
+        class="nav-icon"
+        src="paymenticonnav.png"
+        data-default="paymenticonnav.png"
+        data-active="activepaymenticonnav.png">
 
-      <span>Payments</span>
-  </a>
+    <span>Payments</span>
+</a>
 
-  <!-- PROFILE -->
-  <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="profile"
-     onclick="showPage('profile')">
+<!-- PROFILE -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="profile"
+   onclick="showPage('profile')">
 
-      <img
-          class="nav-icon"
-          src="profileiconnav.png"
-          data-default="profileiconnav.png"
-          data-active="activeprofileiconnav.png">
+    <img
+        class="nav-icon"
+        src="profileiconnav.png"
+        data-default="profileiconnav.png"
+        data-active="activeprofileiconnav.png">
 
-      <span>Profile</span>
-  </a>
+    <span>Profile</span>
+</a>
     </nav>
 
   </div>
@@ -779,75 +799,80 @@ self.addEventListener("activate", event => {
     </div>
 
     <nav class="nav">
-      <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="homepage"
-    onclick="showPage('homepage'); handleHomeNavTap();">
+    <!-- HOME -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="homepage"
+   onclick="showPage('homepage'); handleHomeNavTap();">
 
-      <img
-          class="nav-icon"
-          src="homelogo.png"
-          data-default="homelogo.png"
-          data-active="activehomenavicon.png">
+    <img
+        class="nav-icon"
+        src="homelogo.png"
+        data-default="homelogo.png"
+        data-active="activehomenavicon.png">
 
-      <span>Home</span>
-  </a>
+    <span>Home</span>
+</a>
 
-  <!-- VEHICLES -->
-  <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="vehicles"
-     onclick="showPage('vehicles')">
+<!-- VEHICLES -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="vehicles"
+   onclick="showPage('vehicles')">
 
-      <img
-          class="nav-icon"
-          src="Vehicleiconnav.png"
-          data-default="Vehicleiconnav.png"
-          data-active="activecariconnav.png">
+    <img
+        class="nav-icon"
+        src="Vehicleiconnav.png"
+        data-default="Vehicleiconnav.png"
+        data-active="activecariconnav.png">
 
-      <span>Vehicles</span>
-  </a>
+    <span>Vehicles</span>
+</a>
 
-  <!-- LICENCE -->
-  <a href="javascript:void(0)"
+<!-- LICENCE -->
+<a href="javascript:void(0)"
    class="nav-link"
    data-page="licence-landing"
    onclick="showPage('licence-landing')">
-  <img class="nav-icon" src="licenceiconnav.png"
-       data-default="licenceiconnav.png"
-       data-active="activelicenseiconnav.png">
-  <span>Licence</span>
+
+    <img
+        class="nav-icon"
+        src="licenceiconnav.png"
+        data-default="licenceiconnav.png"
+        data-active="activelicenseiconnav.png">
+
+    <span>Licence</span>
 </a>
 
-  <!-- PAYMENT -->
-  <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="payment"
-     onclick="showPage('payment')">
+<!-- PAYMENT -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="payment"
+   onclick="showPage('payment')">
 
-      <img
-          class="nav-icon"
-          src="paymenticonnav.png"
-          data-default="paymenticonnav.png"
-          data-active="payment-active.png">
+    <img
+        class="nav-icon"
+        src="paymenticonnav.png"
+        data-default="paymenticonnav.png"
+        data-active="activepaymenticonnav.png">
 
-      <span>Payments</span>
-  </a>
+    <span>Payments</span>
+</a>
 
-  <!-- PROFILE -->
-  <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="profile"
-     onclick="showPage('profile')">
+<!-- PROFILE -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="profile"
+   onclick="showPage('profile')">
 
-      <img
-          class="nav-icon"
-          src="profileiconnav.png"
-          data-default="profileiconnav.png"
-          data-active="activeprofileiconnav.png">
+    <img
+        class="nav-icon"
+        src="profileiconnav.png"
+        data-default="profileiconnav.png"
+        data-active="activeprofileiconnav.png">
 
-      <span>Profile</span>
-  </a>
+    <span>Profile</span>
+</a>
     </nav>
 
   </div>
@@ -914,75 +939,80 @@ self.addEventListener("activate", event => {
     </div>
 
     <nav class="nav">
-      <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="homepage"
-     onclick="showPage('homepage'); handleHomeNavTap();">
+     <!-- HOME -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="homepage"
+   onclick="showPage('homepage'); handleHomeNavTap();">
 
-      <img
-          class="nav-icon"
-          src="homelogo.png"
-          data-default="homelogo.png"
-          data-active="activehomenavicon.png">
+    <img
+        class="nav-icon"
+        src="homelogo.png"
+        data-default="homelogo.png"
+        data-active="activehomenavicon.png">
 
-      <span>Home</span>
-  </a>
+    <span>Home</span>
+</a>
 
-  <!-- VEHICLES -->
-  <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="vehicles"
-     onclick="showPage('vehicles')">
+<!-- VEHICLES -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="vehicles"
+   onclick="showPage('vehicles')">
 
-      <img
-          class="nav-icon"
-          src="Vehicleiconnav.png"
-          data-default="Vehicleiconnav.png"
-          data-active="activecariconnav.png">
+    <img
+        class="nav-icon"
+        src="Vehicleiconnav.png"
+        data-default="Vehicleiconnav.png"
+        data-active="activecariconnav.png">
 
-      <span>Vehicles</span>
-  </a>
+    <span>Vehicles</span>
+</a>
 
-  <!-- LICENCE -->
-  <a href="javascript:void(0)"
+<!-- LICENCE -->
+<a href="javascript:void(0)"
    class="nav-link"
    data-page="licence-landing"
    onclick="showPage('licence-landing')">
-  <img class="nav-icon" src="licenceiconnav.png"
-       data-default="licenceiconnav.png"
-       data-active="activelicenseiconnav.png">
-  <span>Licence</span>
+
+    <img
+        class="nav-icon"
+        src="licenceiconnav.png"
+        data-default="licenceiconnav.png"
+        data-active="activelicenseiconnav.png">
+
+    <span>Licence</span>
 </a>
 
-  <!-- PAYMENT -->
-  <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="payment"
-     onclick="showPage('payment')">
+<!-- PAYMENT -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="payment"
+   onclick="showPage('payment')">
 
-      <img
-          class="nav-icon"
-          src="paymenticonnav.png"
-          data-default="paymenticonnav.png"
-          data-active="payment-active.png">
+    <img
+        class="nav-icon"
+        src="paymenticonnav.png"
+        data-default="paymenticonnav.png"
+        data-active="activepaymenticonnav.png">
 
-      <span>Payments</span>
-  </a>
+    <span>Payments</span>
+</a>
 
-  <!-- PROFILE -->
-  <a href="javascript:void(0)"
-     class="nav-link"
-     data-page="profile"
-     onclick="showPage('profile')">
+<!-- PROFILE -->
+<a href="javascript:void(0)"
+   class="nav-link"
+   data-page="profile"
+   onclick="showPage('profile')">
 
-      <img
-          class="nav-icon"
-          src="profileiconnav.png"
-          data-default="profileiconnav.png"
-          data-active="activeprofileiconnav.png">
+    <img
+        class="nav-icon"
+        src="profileiconnav.png"
+        data-default="profileiconnav.png"
+        data-active="activeprofileiconnav.png">
 
-      <span>Profile</span>
-  </a>
+    <span>Profile</span>
+</a>
     </nav>
 
   </div>
@@ -1294,29 +1324,18 @@ function navigateToPage(pageId) {
   page.style.display = "block";
 
   document.querySelectorAll(".nav .nav-link").forEach(link => {
-    const img = link.querySelector(".nav-icon");
-    if (!img) return;
-    const isActive = link.dataset.page === pageId;
+  const img = link.querySelector(".nav-icon");
+  if (!img) return;
+  const isActive = link.dataset.page === pageId;
 
-    if (isActive) {
-      img.src = img.dataset.active;
-      link.classList.add("active");
-
-      const sizes = {
-        "homepage": "1",
-        "vehicles": "1",
-        "licence-landing": "1",
-        "payment": "1",
-        "profile": "1"
-      };
-      const scaleValue = sizes[link.dataset.page] || "1.0";
-      img.style.transform = scaleValue.includes("scale") ? scaleValue : `scale(${scaleValue})`;
-    } else {
-      link.classList.remove("active");
-      img.src = img.dataset.default;
-      img.style.transform = "scale(1)";
-    }
-  });
+  if (isActive) {
+    img.src = img.dataset.active;
+    link.classList.add("active");
+  } else {
+    link.classList.remove("active");
+    img.src = img.dataset.default;
+  }
+});
 
   updateRefreshTime();
 
