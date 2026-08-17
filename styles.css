@@ -529,6 +529,7 @@ h3 {
   align-items: center;           /* vertically center badge with text */
   gap: 4px;                      /* space between text and badge */
   margin: 0;                     /* remove default margin if needed */
+  font-family: 'VIC-SemiBold', -apple-system, sans-serif;
 }
 
 .permit-badge {
