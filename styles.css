@@ -2335,7 +2335,7 @@ img {
   font-size: 15px;
   line-height: 20px;
   color: #111;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Nexa', sans-serif;
   white-space: nowrap;
   overflow: visible;
 }
@@ -2421,4 +2421,12 @@ img {
   src: url('VIC-SemiBold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'Nexa';
+  src: url('Nexa-Trial-ExtraBold.ttf') format('truetype');
+  font-weight: 800; /* ExtraBold */
+  font-style: normal;
+  font-display: swap;
 }
